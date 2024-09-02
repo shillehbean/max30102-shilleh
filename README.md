@@ -1,43 +1,32 @@
-# max30102
-MAX30102 Pulse Oximetry Sensor code for Raspberry Pi
+# Heart Rate and SpO2 Monitor using Raspberry Pi
 
-## Info
-The code originally comes from: https://github.com/vrano714/max30102-tutorial-raspberrypi
-but with some modifications so that it doesn't require the interrupt pin and
-instead polls by checking the read and write FIFO pointers. I've also added a
-top level of code that encapsulates everything into a thread.
+This project is a simple Flask web application that streams live video from a Raspberry Pi camera and displays real-time heart rate and SpO2 (oxygen saturation) data using a MAX30102 sensor. This setup is ideal for those looking to create a basic health monitoring system or experiment with IoT devices and web technologies.
 
-The original code is a Python port based on Maxim's reference design written to
-run on an Arduino UNO: https://github.com/MaximIntegratedRefDesTeam/RD117_ARDUINO/
+## Features
 
-## Setup
-A couple non-standard Python libraries are required: `smbus` and `numpy`. I recommend
-installing the `numpy` library with apt as opposed to pip since pip takes a really
-long time.
-`sudo apt install python-numpy`
+- **Live Video Streaming**: Streams video from the Raspberry Pi camera to a web page, accessible from any device on the same network.
+- **Real-Time Biometric Data**: Displays heart rate and SpO2 data collected from the MAX30102 sensor in real-time.
+- **User-Friendly Interface**: Simple web interface with clear data visualization and live updates every second.
 
-## Use as a script
+## How It Works
 
-Run `python main.py`, data will be printed in standard output. 
+1. **Video Feed**: The application captures video frames using the `Picamera2` library and streams them to a web page using Flask's response stream.
+2. **Biometric Data Collection**: The `HeartRateMonitor` class continuously reads data from the MAX30102 sensor to calculate heart rate and SpO2 levels.
+3. **Data Display**: Heart rate and SpO2 levels are displayed alongside the video stream on the web page, with automatic updates to reflect real-time changes.
 
-The full usage:
+## Setup and Usage
 
-```
-$ python main.py -h
-usage: main.py [-h] [-r] [-t TIME]
+### Prerequisites
 
-Read and print data from MAX30102
+- Raspberry Pi with a connected camera module.
+- MAX30102 sensor connected to the Raspberry Pi.
+- Python 3.x installed on the Raspberry Pi.
+- Required Python libraries: Flask, Picamera2, OpenCV, numpy, and any necessary drivers for the MAX30102 sensor.
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -r, --raw             print raw data instead of calculation result
-  -t TIME, --time TIME  duration in seconds to read from sensor, default 30
-```
+### Installation
 
-## Use as a library
-To use the code, instantiate the `HeartRateMonitor` class found in `heartrate_monitor.py`.
-The thread is used by running `start_sensor` and `stop_sensor`. While the thread
-is running you can read `bpm` to get the active beats per minute. Note that a few
-seconds are required to get a reliable BPM value and the sensor is very sensitive
-to movement so a steady finger is required!
-
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/max30102-shilleh.git
+   cd max30102-shilleh
+   ```
