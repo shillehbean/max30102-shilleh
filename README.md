@@ -14,8 +14,6 @@ This project is a simple Flask web application that streams live video from a Ra
 2. **Biometric Data Collection**: The `HeartRateMonitor` class continuously reads data from the MAX30102 sensor to calculate heart rate and SpO2 levels.
 3. **Data Display**: Heart rate and SpO2 levels are displayed alongside the video stream on the web page, with automatic updates to reflect real-time changes.
 
-## Setup and Usage
-
 ### Prerequisites
 
 - Raspberry Pi with a connected camera module.
