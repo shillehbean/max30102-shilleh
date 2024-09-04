@@ -78,7 +78,6 @@ def index():
                 <div id="biometric_data">
                     <p class="data">Heart Rate: <span id="heart_rate">Waiting for data...</span></p>
                     <p class="data">SpO2 Level: <span id="spo2">Waiting for data...</span></p>
-                    <p class="data">Status: <span id="status">Waiting for data...</span></p>
                 </div>
             </div>
             <script>
@@ -88,7 +87,6 @@ def index():
                         .then(data => {
                             document.getElementById('heart_rate').textContent = data.heart_rate ? data.heart_rate + ' BPM' : 'No data';
                             document.getElementById('spo2').textContent = data.spo2 ? data.spo2 + ' %' : 'No data';
-                            document.getElementById('status').textContent = data.finger_detected ? 'Finger detected' : 'No finger detected';
                         })
                         .catch(error => console.error('Error fetching biometric data:', error));
                 }
@@ -103,14 +101,12 @@ def biometric_data_route():
     # Convert numpy.bool_ to native Python bool
     heart_rate = hr_monitor.get_bpm()
     spo2 = hr_monitor.get_spo2()
-    finger_detected = bool(hr_monitor.get_bpm() > 0)  # Convert to Python bool explicitly
 
     # Note: There is a slight delay in response due to sensor data buffering, processing,
     # and network communication to ensure accuracy and stability in the displayed readings.
     return {
         "heart_rate": heart_rate,
-        "spo2": spo2,
-        "finger_detected": finger_detected
+        "spo2": spo2
     }
 
 if __name__ == '__main__':
