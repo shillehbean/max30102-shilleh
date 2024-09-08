@@ -36,7 +36,7 @@ def index():
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Heart Rate and SpO2 Monitor</title>
+            <title>IoT Health Monitoring System.</title>
             <style>
                 body {
                     font-family: Arial, sans-serif;

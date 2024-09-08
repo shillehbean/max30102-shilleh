@@ -113,7 +113,7 @@ def index():
         </head>
         <body>
             <div class="container">
-                <h1>Heart Rate and SpO2 Monitor</h1>
+                <h1>IoT Health Monitoring System.</h1>
                 <div>
                     <img src="{{ url_for('video_feed') }}" width="640" height="480">
                 </div>
